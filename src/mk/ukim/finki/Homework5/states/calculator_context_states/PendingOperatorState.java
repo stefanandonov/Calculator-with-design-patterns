@@ -1,7 +1,5 @@
 package mk.ukim.finki.Homework5.states.calculator_context_states;
 
-import mk.ukim.finki.Homework2.OperationStrategy;
-import mk.ukim.finki.Homework2.StrategiesFactory;
 import mk.ukim.finki.Homework5.CalculatorContext;
 
 public class PendingOperatorState extends CalculatorState {

@@ -1,8 +1,7 @@
 package mk.ukim.finki.Homework5;
 
-import mk.ukim.finki.Homework5.states.calcilator_tape_states.CalculatorPaperTapeOffState;
-import mk.ukim.finki.Homework5.states.calcilator_tape_states.CalculatorPaperTapeOnState;
-import mk.ukim.finki.Homework5.states.calcilator_tape_states.CalculatorPaperTapeState;
+import mk.ukim.finki.Homework5.states.calculator_tape_states.CalculatorPaperTapeOnState;
+import mk.ukim.finki.Homework5.states.calculator_tape_states.CalculatorPaperTapeState;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package mk.ukim.finki.Homework5;
 
-import mk.ukim.finki.Homework2.OperationStrategy;
-import mk.ukim.finki.Homework2.StrategiesFactory;
+import mk.ukim.finki.Homework5.strategy.OperationStrategy;
+import mk.ukim.finki.Homework5.strategy.StrategiesFactory;
 import mk.ukim.finki.Homework5.states.calculator_context_states.CalculatorState;
 import mk.ukim.finki.Homework5.states.calculator_context_states.InitialState;
 import mk.ukim.finki.Homework5.states.calculator_context_states.PendingLeftOperandState;
