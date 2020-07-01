@@ -45,7 +45,7 @@ public class MemoryAccessedState extends CalculatorState {
     public void pressOperatorButton(char operator) {
         calculatorContext.clearDisplay();
 
-        if (!calculatorContext.isLeftOperandEmpty() && !calculatorContext.isRightOperandEmpty()) {
+        if (calculatorContext.isLeftOperandNotEmpty() && !calculatorContext.isRightOperandEmpty()) {
             try {
                 calculatorContext.buildOperandValues();
                 calculatorContext.calculateResult();
@@ -69,7 +69,7 @@ public class MemoryAccessedState extends CalculatorState {
     public String pressEqualButton() {
         calculatorContext.clearDisplay();
         try {
-            calculatorContext.buildOperandValues();;
+            calculatorContext.buildOperandValues();
             calculatorContext.calculateResult();
             calculatorContext.buildDisplay();
 
@@ -127,7 +127,7 @@ public class MemoryAccessedState extends CalculatorState {
     public void pressChangeSignButton() {
         //TODO simplify this
         if (calculatorContext.isRightOperandEmpty()) {
-            if (!calculatorContext.isLeftOperandEmpty()) {
+            if (calculatorContext.isLeftOperandNotEmpty()) {
                 String leftText = calculatorContext.getLeftText();
                 int position = calculatorContext.getDisplayContent().lastIndexOf(leftText);
                 int size = leftText.length();

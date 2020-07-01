@@ -1,10 +1,10 @@
 package mk.ukim.finki.Homework5;
 
-import mk.ukim.finki.Homework5.strategy.OperationStrategy;
-import mk.ukim.finki.Homework5.strategy.StrategiesFactory;
 import mk.ukim.finki.Homework5.states.calculator_context_states.CalculatorState;
 import mk.ukim.finki.Homework5.states.calculator_context_states.InitialState;
 import mk.ukim.finki.Homework5.states.calculator_context_states.PendingLeftOperandState;
+import mk.ukim.finki.Homework5.strategy.OperationStrategy;
+import mk.ukim.finki.Homework5.strategy.StrategiesFactory;
 
 
 public class CalculatorContext {
@@ -13,6 +13,7 @@ public class CalculatorContext {
     StringBuilder leftText;
     Double left;
     Character operator;
+    OperationStrategy strategy;
     StringBuilder rightText;
     Double right;
     Double result;
@@ -68,16 +69,9 @@ public class CalculatorContext {
         right = null;
         result = null;
         operator = null;
+        strategy = null;
         displayContent = new StringBuilder();
         calculatorState = new PendingLeftOperandState(this);
-    }
-
-    public void setToInitialState() {
-        calculatorState = new InitialState(this);
-    }
-
-    public void pressClearButton() {
-        calculatorState = new InitialState(this);
     }
 
 
@@ -94,8 +88,8 @@ public class CalculatorContext {
         leftText.append(text);
     }
 
-    public boolean isLeftOperandEmpty() {
-        return leftText.length() == 0;
+    public boolean isLeftOperandNotEmpty() {
+        return leftText.length() != 0;
     }
 
     public boolean isRightOperandEmpty() {
@@ -116,6 +110,7 @@ public class CalculatorContext {
 
     public void setOperator(char operator) {
         this.operator = operator;
+        strategy = StrategiesFactory.createStrategy(operator);
     }
 
     public void setRightText(String s) {
@@ -127,8 +122,7 @@ public class CalculatorContext {
     }
 
     public void calculateResult() throws Exception {
-        OperationStrategy operationStrategy = StrategiesFactory.createStrategy(operator);
-        result = operationStrategy.execute(left, right);
+        result = strategy.execute(left, right);
     }
 
     public void buildOperandValues() {
@@ -162,10 +156,6 @@ public class CalculatorContext {
 
     public Double getResult() {
         return result;
-    }
-
-    public void setResult(Double result) {
-        this.result = result;
     }
 
     public void buildLeftOperandText() {
@@ -243,6 +233,7 @@ public class CalculatorContext {
             this.leftText = new StringBuilder(memento.leftText);
             this.left = memento.left != null ? Double.valueOf(memento.left) : null;
             this.operator = memento.operator != null ? Character.valueOf(memento.operator) : null;
+            this.strategy = memento.strategy;
             this.rightText = new StringBuilder(memento.rightText);
             this.right = memento.right!=null ? Double.valueOf(memento.right) : null;
             this.result = memento.result!=null ? Double.valueOf(memento.result) : null;

@@ -1,6 +1,8 @@
 package mk.ukim.finki.Homework5;
 
 import mk.ukim.finki.Homework5.states.calculator_context_states.CalculatorState;
+import mk.ukim.finki.Homework5.strategy.OperationStrategy;
+import mk.ukim.finki.Homework5.strategy.StrategiesFactory;
 
 public class CalculatorContextMemento {
 
@@ -8,6 +10,7 @@ public class CalculatorContextMemento {
     StringBuilder leftText;
     Double left;
     Character operator;
+    OperationStrategy strategy;
     StringBuilder rightText;
     Double right;
     Double result;
@@ -21,6 +24,7 @@ public class CalculatorContextMemento {
         this.leftText = leftText;
         this.left = left;
         this.operator = operator;
+        strategy = this.operator != null ? StrategiesFactory.createStrategy(this.operator) : null;
         this.rightText = rightText;
         this.right = right;
         this.result = result;
